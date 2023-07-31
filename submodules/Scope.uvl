@@ -1,0 +1,11 @@
+namespace Scope
+
+features
+	Scope {abstract true}
+		optional
+			Repository
+			Project
+			Model
+			Submodel
+			Element
+

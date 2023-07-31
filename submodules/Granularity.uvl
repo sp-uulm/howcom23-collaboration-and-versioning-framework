@@ -1,0 +1,8 @@
+namespace Granularity
+
+features
+	Granularity {featureDescription__ "The granularity can be somewhat finer or coarser. E.g., granularity of space/scope can be repository, file, line, character, model element, etc.,", abstract true}
+		or
+			Fine
+			Coarse
+

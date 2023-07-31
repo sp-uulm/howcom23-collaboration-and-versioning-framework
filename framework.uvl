@@ -1,0 +1,408 @@
+namespace "Integrated Model"
+
+imports
+	submodules.Interval as PushInterval
+	submodules.Granularity as AccessControlGranularity
+	submodules.Interval as PullInterval
+	submodules.AuthenticationAccessControl as ReadsArtifacts
+	submodules.AuthenticationAccessControl as ReadsHistory
+	submodules.Granularity as "Change Scope"
+	submodules.AuthenticationAccessControl as Writes
+	submodules.Granularity as "Locking Scope"
+	submodules.Interval as VersionInterval
+
+features
+	"Integrated Model" {abstract true}
+		mandatory
+			"Problem Space" {abstract true}
+				mandatory
+					Goals {abstract true}
+						mandatory
+							"Supported Collaborators" {featureDescription__ "The amount of persons the user wants to collaborate with", abstract true}
+								alternative
+									Two
+									"Up to Ten"
+									Hundreds
+							"Supported CSs" {featureDescription__ "The amount of CSs that should be supported (e.g. textual, visual, tabular)", abstract true}
+								alternative
+									"Single CS"
+									"Multi CS" {featureDescription__ "Multi means multiple CSs"}
+						optional
+							"Layout manually" {featureDescription__ "Capability to adjust the layout of at least one supported CS manually"}
+							"Publish Work" {featureDescription__ "Do you want to publish (parts of) your work for external or internal partners (in addition to your collaborators)?"}
+								optional
+									Restrict {featureDescription__ "Really deleting information is important although it is very hard in a cloned world", abstract true}
+										or
+											"Restrict Read Access" {featureDescription__ "Read access is just restricted to parts of the model without changing it"}
+											"Delete Information" {featureDescription__ "really remove information and any connected meta-information as well from any past version"}
+											"Obfuscate Information" {featureDescription__ "obfuscate information due to IP protection or compliance"}
+							"Deal with Evolution" {featureDescription__ "enables the user to change the state"}
+								optional
+									Undo {featureDescription__ "ability to revert locally and globally (with less effort) the most recent changes"}
+									"Record Evolution" {featureDescription__ "persist not only the current state but at least the information to restore previous states (possibly even concurrent states)"}
+										optional
+											"Load Previous Versions" {featureDescription__ "I want to restore previous versions"}
+												optional
+													"Find Bug Cause" {featureDescription__ "due to the restore of previous versions, I am able to find the version or change where a bug was introduced"}
+													"Understand Model Evolution" {featureDescription__ "I want to understand how the model changed over the time (which change from whom, when, possible impacts of a change, ...)"}
+														optional
+															"Context of Evolution" {featureDescription__ "additional information such as documents, issues, change requests and so on who led to a model evolution"}
+											Querying {featureDescription__ "I want to query the (accumulated) (meta) data"}
+												optional
+													"Get Statistics on Evolution" {featureDescription__ "I want to have statistics over (meta) data gained during model evolution"}
+											Modify {featureDescription__ "I want to change/remove the evolution due to privacy/intellectual property restrictions"}
+									"Restrict Append and Write Access" {featureDescription__ "I want to grant write access only to specific (groups of) persons"}
+					"Usage Context" {abstract true}
+						mandatory
+							Users {featureDescription__ "What kind of users do we expect?", abstract true}
+								optional
+									"Versioning Expertise" {featureDescription__ "probably not an expert in computers and software in general, but familiar with versioning"}
+							Artifacts {featureDescription__ "What shall be versioned?", abstract true}
+								or
+									"Plain Text" {featureDescription__ "Text document that usually will not be further processed by a parser"}
+									"Source Code" {featureDescription__ "Text document that typically will be processed by a parser and as such, has a more complex syntax"}
+									Table {featureDescription__ "The versioned artifact has the of a table"}
+									Models {featureDescription__ "Models with graphical (concrete) syntax"}
+									Files {featureDescription__ "Arbitrary files like pictures, videos. Their content is not considered by versioning."}
+									Other {featureDescription__ "everything else that do not fit into the other categories."}
+							Platform {featureDescription__ "Should the VCS only be used on a single platform or across multiple platforms?"}
+								alternative
+									Single
+									Multi
+							Location {featureDescription__ "where the tool shall be used/usable", abstract true}
+								or
+									"Off the Map - Offline" {featureDescription__ "capability to work with versioned artifacts without any connection. If selected, this is an important feature although we still might have a connection."}
+									"On the Road - Unstable Connection" {featureDescription__ "capability to handle with unstable or unreliable connection. Might affect synchronous mode of collaboration."}
+									"In the Office - Stable Connection" {featureDescription__ "always a perfect internet connection"}
+							Tooling {featureDescription__ "How can the VCS be used by the users", abstract true}
+								optional
+									"Command Line Interface" {featureDescription__ "VCS can be operated from CLI"}
+									"Graphical User Interface" {featureDescription__ "The VCS offers a stand-alone GUI application"}
+									"Integrated in Artifact Editor" {featureDescription__ "The VCS is integrated into the editor to create the artifact to be versioned"}
+					"Quality Requirements" {featureDescription__ "", abstract true}
+						optional
+							"Versioning Quality" {featureDescription__ "non-functional requirements on versioning", abstract true}
+								optional
+									"Fast Restore Latest Version" {featureDescription__ "The latest version of an artifact shall be restored with low latency"}
+										optional
+											"Fast Restore Any Version" {featureDescription__ "Any version (not only the latest) shall be restored with low latency"}
+									"Low Disk Space Usage" {featureDescription__ "The amount of required disk space should remain low, especiall with increasing amount of versions."}
+									"Low Memory Footprint" {featureDescription__ "while working with the versioning tool, the memory usage shall be low, especially with increasing amount of versions."}
+						mandatory
+							"Connection Quality" {featureDescription__ "network connection", abstract true}
+								or
+									"Usable With No Connection" {featureDescription__ "the tool shall be usable without any (network) connection"}
+									"Usable With Poor Connection" {featureDescription__ "the tool shall be usable with a poor (unreliable/unstable) (network) connection"}
+									"Usable With Good Connection" {featureDescription__ "the tool shall be usable with a good (network) connection"}
+							"Collaboration Quality" {abstract true}
+								optional
+									"Awareness of Collaborators" {featureDescription__ "each worker is aware of the activities of collaborators (ghost cursor, cursor position, selected elements, etc.)"}
+										optional
+											"In Real-time"
+									"Communication with Collaborators" {featureDescription__ "The collaboration framework offers something like chat, comments, discussions, etc."}
+									"Disturbance Free" {featureDescription__ "In order to focus on a specific task, it is possible to switch off awareness information and change propagation (possibly delayed)"}
+									"No Accidental Loss of Information" {featureDescription__ "For example, no accidental overwrites (like in zope) (often due to missing awareness)"}
+						optional
+							"Layout Continuity" {featureDescription__ "The existing layout of versioned (graphical) artifacts shall change as less as possible during merging."}
+			"Solution Space" {abstract true}
+				mandatory
+					Capabilities {abstract true}
+						mandatory
+							"Collaboration Mode" {featureDescription__ "It is ok to not choose any collaboration mode, because a tool could offer only versioning capabilities, e.g., Apple Time Machine", abstract true}
+								or
+									Synchronous {featureDescription__ "synchronous (or realtime) exchange of information"}
+										optional
+											"User Presence" {featureDescription__ "not only artifact related information is exchanged but also user presence related data", abstract true}
+												optional
+													"Selected Elements" {featureDescription__ "The selected elements of collaborators are shown (elements = parts of versioned artifacts, e.g. model elements)"}
+													"Ghost Cursor" {featureDescription__ "The current pointer positions of collaborators are shown."}
+													Movements {featureDescription__ "Intermediate states of elements such as during resizing or moving are propagated and visualized"}
+									"Seamless Transition" {featureDescription__ "a change the current collaboration mode happens seamless without interruption."}
+									Asynchronous {featureDescription__ "asynchronous exchange of information (always includes postponed merges)"}
+										mandatory
+											Direction {featureDescription__ "direction of unidirectional asynchronous data exchange (incoming, outgoing)", abstract true}
+												or
+													Publish {featureDescription__ "local data is published to collaborators asynchronously"}
+													Receive {featureDescription__ "local data is received from collaborators asynchronously"}
+							Concurrency {featureDescription__ "Whether versioing allows concurrent changes or not. Orthogonal to sync and async", abstract true}
+								or
+									Concurrent {featureDescription__ "Changes to the same entity can be done concurrently"}
+										mandatory
+											Merging {featureDescription__ "Necessary capability to combine two diverged branches into a single one"}
+												alternative
+													"Append-only Merge" {featureDescription__ "Merging by only adding or removing changes. Does not produce conflicts."}
+														optional
+															"2-way Diff" {featureDescription__ "Comparing of two artifacts without any knownledge about a common anchestor or common base"}
+													"Common Ancestor Merge" {featureDescription__ "Requires that two branches have common anchestor or base that is known. Conflicts can occur and need to be handled."}
+														mandatory
+															"Derive deltas" {featureDescription__ "How to derive deltas and detect conflicts starting from the common base"}
+																optional
+																	"3-way Diff" {featureDescription__ "state-based, a posteriori"}
+																	"Operation-based Diff" {featureDescription__ "a priori"}
+															"Conflict Resolution" {featureDescription__ "How to resolve existing confilcts"}
+																optional
+																	Destructive {featureDescription__ "one alternative is selected automatically by a metric is not part of the merged result", abstract true}
+																		optional
+																			Random
+																			"Size of Model" {featureDescription__ "e.g. number of nodes, max depth, maximum nesting"}
+																			"Time of Change"
+																				optional
+																					FWW {featureDescription__ "first writer wins"}
+																					LWW {featureDescription__ "last writer wins"}
+																	Constructive {featureDescription__ "all alternatives are combined in a costructive way", abstract true}
+																		optional
+																			Concatenation {featureDescription__ "the conflicting parts are just concatenated (e.g., strings)"}
+																			"Insert in List" {featureDescription__ "the conflicting parts are kept in a list (e.g., several values/elements)"}
+																			Calculation {featureDescription__ "resulting values are combined by mathematical operatoins"}
+																			"Integrate Conflicts in Model" {featureDescription__ "explicitly allow conflicts to be part of the merged artifact"}
+																	"Complex Strategy" {featureDescription__ "can either constructive or destructive", abstract true}
+																		optional
+																			Heuristics {featureDescription__ "e.g. ML"}
+																			"Domain-specific" {featureDescription__ "e.g.. optimizing KPIs, typically content-.based"}
+																			"Avoid Inconsistencies" {featureDescription__ "Avoid inconsitencies also on semantic level on end result of merge"}
+																	Manual {featureDescription__ "an arbiter, e.g., user, selects a version to be part of the merge result or manually overwrites conflicting parts"}
+														optional
+															"Visualization of Conflicts"
+									Sequential {featureDescription__ "No concurrent creation of changes, no conflicts by design"}
+										optional
+											"Pessimistic Locking" {featureDescription__ "The artifact or subparts of the artifact are exlusively locked to a single collaborator. Locking scope can range in their granularity, e.g, entities, submodels, files, repositories"}
+												mandatory
+													"Locking Scope".Granularity
+						optional
+							"Branching Support" {featureDescription__ "Does the collaboration approach allow branching?", abstract true}
+								or
+									Explicit {featureDescription__ "possibility to explicitly create branches and give them a name"}
+									Implicit {featureDescription__ "(necessary) consequence of concurrent operations"}
+							"Compare Two Versions" {featureDescription__ "different versions can be compared"}
+								mandatory
+									"Visualization of Differences" {featureDescription__ "differences can be visualized"}
+								optional
+									"Operation-based" {featureDescription__ "Versions are compared by utilizing the recorded operations"}
+									"Diff-based" {featureDescription__ "Differences and similarities between versions are derived a posteriori with a state-based diffing algorithm"}
+						mandatory
+							"Metamodel of Deltas" {featureDescription__ "describes the scope of a meta-model of a delta. Sometimes, a 'isFinerGrainedThan'-relation exists between two meta-models.", abstract true}
+								optional
+									"File System" {featureDescription__ "only created/updated/deleted files/directories are recognized without considering the content (e.g., Dropbox)"}
+									File {featureDescription__ "The content of a file is considered to recognize changes"}
+										optional
+											Line {featureDescription__ "Changes in a file can be more fine-grained on a per line level"}
+									Syntax {featureDescription__ "Syntax means, that the file has some kind of structure which allows for an even more fine-grained level according to a grammar/meta-model (e.g. classes, methods etc.)."}
+									"Composite / Transactions" {featureDescription__ "Several changes could be combined to Composites/Transactions"}
+							"Granularity of Changes" {featureDescription__ "Space: File vs. Line vs. Class vs. Attributes; Version: How often a version is created (seldom vs. often vs. after each edit); PushInterval: How often changes are pushed to a server/collaborator; PullInterval: How often changes are pulled from a server/collaborator", abstract true}
+								mandatory
+									"Change Scope".Granularity
+									VersionInterval.Interval
+									PushInterval.Interval
+									PullInterval.Interval
+						optional
+							"History of State" {featureDescription__ "The state's edit or version history is in some way accessible", abstract true}
+								mandatory
+									"History Persistence" {featureDescription__ "The history is persisted", abstract true}
+										or
+											Persistent {featureDescription__ "not only for a user session, but for a longer period of time (probably forever)"}
+											Temporary {featureDescription__ "just for a while, like Undo"}
+								optional
+									"History of Operations" {featureDescription__ "Also the history of operations is accessible (always implies history of state since it can be derived from)"}
+									"Query History" {featureDescription__ "The recorded data can be queried"}
+										optional
+											"Meta-data" {featureDescription__ "The recorded meta-data can be queried"}
+											"in Artifact Versions" {featureDescription__ "The content of versioned artifacts (all versions) can be queried"}
+									"Retroactive Modification" {featureDescription__ "The meta-data and the artifact history can be modified retroactively (e.g., squash commits/versions, pseudonymization of users)"}
+							"Record Meta-data" {featureDescription__ "Additional (meta-)information is recorded side-by-side to the artifacts."}
+						mandatory
+							ReadsArtifacts.AuthenticationAccessControl
+							ReadsHistory.AuthenticationAccessControl
+							Writes.AuthenticationAccessControl
+						optional
+							AccessControlGranularity.Granularity
+							"Offline Access" {featureDescription__ "what kind of access is available in the offline mode", abstract true}
+								mandatory
+									"Offline Read" {featureDescription__ "only reading of artifacts in offline mode"}
+										optional
+											"Read meta-info" {featureDescription__ "also reading meta-info of artifacts"}
+								optional
+									"Offline Write" {featureDescription__ "only writing of artifacts in offline mode"}
+							"Bi-directional Synchronization CS/AS" {featureDescription__ "How are changes propagated between CS and AS?"}
+								mandatory
+									"Persist Abstract Representation" {featureDescription__ "the abstract representation is persisted (in opposite to 'always derived from concrete model/artifact')"}
+									Layout {featureDescription__ "How is an artifact layouted?", abstract true}
+										or
+											"Deterministic Layout" {featureDescription__ "layout is deterministic and can therefore generated by a layout algorithm or there exists even a canonical form"}
+											"Artisan Layout" {featureDescription__ "the layout has to be done manually"}
+								optional
+									"Incremental Synchronization" {featureDescription__ "synchronization is done incrementally, i.e. each change is synchronized [parsed/rendered] not the whole model [abstract or concrete] is recreated."}
+									"Persist Concrete Syntax" {featureDescription__ "concrete syntax is persisted (in opposite to /always generated from abstract model/)"}
+					"Operating Environment" {featureDescription__ "Features and capabilities of the operating environment, e.g., modeling tool or VCS", abstract true}
+						mandatory
+							"Editor Integration" {abstract true}
+								or
+									Standalone {featureDescription__ "The VCS can be used as a stand-alone tool. No tight coupling with an editor is required."}
+									Integrated {featureDescription__ "VCS requires at least for some features a tight coupling with a specific editor."}
+										optional
+											GUI {featureDescription__ "The editor provides a GUI for some features"}
+												optional
+													"Diff Visualization" {featureDescription__ "Diffs are visualized within the editor"}
+														optional
+															"Level of CS"
+															"Level of AS"
+													"Merge Visualization" {featureDescription__ "Visual tools to perform a merge."}
+													Branching {featureDescription__ "Visual tools to support branching"}
+											"Real-Time Change Propagation" {featureDescription__ "Requires tight coupling of editor and VCS to allow frequent (close to real-time) propagation of changes"}
+											"Edit Operation Information" {featureDescription__ "The editor provides edit operation information (either directly recorded or derived from state changes)"}
+						optional
+							Network {featureDescription__ "Does the collaboration approach rely on networking and - if yes - how?"}
+								mandatory
+									"Network Topology" {featureDescription__ "What kind of network topology is needed?", abstract true}
+										or
+											Centralized {featureDescription__ "centralized, one specific server node"}
+											Decentralized {featureDescription__ "no specific server node"}
+									"Communication Protocol" {featureDescription__ "What kind of generic communication approach is used?", abstract true}
+										or
+											"Peer-2-Peer" {featureDescription__ "Peer-2-Peer without a dedicated server"}
+											"Client-Server" {featureDescription__ "classical client-server architecture"}
+					"Design Decision" {featureDescription__ "Kang: Design features represent design decisions such as domain technologies and implementation techniques", abstract true}
+						mandatory
+							Data {abstract true}
+								mandatory
+									"Location of Data" {featureDescription__ "Where the versioned data and the meta data is stored", abstract true}
+										or
+											remote {featureDescription__ "The data is not only stored on the local computer"}
+											local {featureDescription__ "The data is stored on the local computer"}
+												optional
+													full {featureDescription__ "All data (including meta-data) is stored locally"}
+													partial {featureDescription__ "Only parts of the data or meta-data is stored locally, e.g., SVN stores only the latest version of a file on the local computer"}
+								optional
+									"Version Data" {featureDescription__ "How/what data is versioned and how the version history is organized"}
+										mandatory
+											"Primitive History Entries" {featureDescription__ "the primitive entries the version history consists of", abstract true}
+												or
+													"Snapshots of State" {featureDescription__ "A full or partial snapshot of the versioned data"}
+														optional
+															"Diffing Algorithms" {featureDescription__ "The VCS provides diffing algorithms to derive differences (deltas or operations) between snapshots"}
+													Operations {featureDescription__ "the edit operations are persisted, e.g. a user performed edit operation. Does not need an additional diffing alogrithm, because differences are directly recorded"}
+														optional
+															"Snapshots for Performance" {featureDescription__ "Recording only operations may lead to long restore times of versions. To address this issue, snapshots or caching can be used."}
+																or
+																	"Snapshot Latest Version" {featureDescription__ "The latest version is stored/cached as a full state and does not need to be restored"}
+																	"Snapshot Intermediate Versions" {featureDescription__ "Some intermediate versions are stored/cached (not only the latest) and do not need to be restored."}
+											"History Structure" {featureDescription__ "Structure of recorded history entries", abstract true}
+												alternative
+													Linear {featureDescription__ "History is a linear list"}
+													"Directed Acyclic Graph" {featureDescription__ "History is a DAG"}
+											"Version IDs" {featureDescription__ "each versions needs an ID. The id is generated via...", abstract true}
+												alternative
+													"Incrementing Integers"
+													"Content Addressed" {featureDescription__ "e.g., hashing"}
+													GUIDs
+									"State Data" {featureDescription__ "different (partial) states are collected. no focus on explicit history but a shared state which is eventually consistent."}
+										optional
+											"State-based CRDT" {featureDescription__ "on possible implementation of State Data"}
+									"Operations Data" {featureDescription__ "different (partial) sets of operations are collected. no focus on explicit history but a shared set of operations which is eventually consistent."}
+										optional
+											"Operation-based CRDT" {featureDescription__ "on possible implementation of Operations Data"}
+									"Meta Data" {featureDescription__ "such as (real) time, user, domain specific data, ..."}
+										optional
+											User {featureDescription__ "Who did a change?"}
+											Timestamp {featureDescription__ "When was a change done?"}
+											"Context Information" {featureDescription__ "additional information given by the user (e.g. commit message)"}
+											"Other Information" {featureDescription__ "anything else"}
+						optional
+							"Access Control" {featureDescription__ "How access control is realized"}
+								optional
+									"Centralized Access Control" {featureDescription__ "central authority grants access"}
+									"Decentralized Access Control"
+										optional
+											Encryption {featureDescription__ "the artifact is protected by a password"}
+											"Unguessable ID" {featureDescription__ "something that cannot be guessed, e.g., GUID, is required to access an artifact"}
+							"Conflict Detection Algorithm"
+							Locking {featureDescription__ "A central authority can grant exclusive write access (a lock) to an artifact or parts of an artifact. This prevents conflicts by design."}
+						mandatory
+							"Platform "
+								alternative
+									Specific
+									Independent
+
+constraints
+	"Multi CS" => "Bi-directional Synchronization CS/AS"
+	"Layout manually" => "Artisan Layout"
+	"Layout manually" => !Files
+	"Restrict Read Access" => ReadsArtifacts.ACL | ReadsArtifacts."Capability-based" | ReadsHistory.ACL | ReadsHistory."Capability-based"
+	"Delete Information" => "Retroactive Modification"
+	"Obfuscate Information" => "Retroactive Modification"
+	"Deal with Evolution" => "Versioning Quality"
+	Undo => "History Persistence"
+	"Record Evolution" => Persistent
+	Querying => "Query History"
+	"Get Statistics on Evolution" => "Record Meta-data"
+	Modify => "Retroactive Modification"
+	"Restrict Append and Write Access" => Writes."Capability-based" | Writes.ACL
+	"Plain Text" => File
+	"Source Code" => Line
+	Table => Syntax
+	Models => Syntax
+	Files => File
+	Single => Specific
+	Multi => Independent
+	"Off the Map - Offline" => "Usable With No Connection"
+	"On the Road - Unstable Connection" => "Usable With No Connection" | "Usable With Poor Connection"
+	"Command Line Interface" => Standalone
+	"Graphical User Interface" => Standalone
+	"Integrated in Artifact Editor" => Integrated
+	"Usable With No Connection" => Asynchronous
+	"Usable With No Connection" => "Offline Access"
+	"Usable With Poor Connection" & Synchronous => "Seamless Transition"
+	"In Real-time" => "User Presence"
+	"Disturbance Free" => Asynchronous
+	"No Accidental Loss of Information" & Sequential => "Pessimistic Locking"
+	"Layout Continuity" => "Deterministic Layout" | "Artisan Layout" & "Incremental Synchronization"
+	Synchronous => "Real-Time Change Propagation"
+	Synchronous <=> PullInterval.Immediately & PushInterval.Immediately
+	Synchronous => Network
+	"Seamless Transition" => Synchronous & Asynchronous
+	Concurrent => Implicit
+	Concurrent => "Conflict Detection Algorithm" | "Operation-based CRDT" | "State-based CRDT"
+	"Append-only Merge" => "Diff-based"
+	"3-way Diff" => "Diff-based"
+	"Operation-based Diff" => "Operation-based"
+	"Integrate Conflicts in Model" => "Visualization of Conflicts"
+	Sequential => Centralized
+	"Pessimistic Locking" => Locking
+	"Locking Scope".Fine => "Change Scope".Fine
+	"Visualization of Differences" => "Operation-based" | "Diff-based"
+	"Compare Two Versions" => "Diffing Algorithms"
+	File | "File System" => "Change Scope".Coarse
+	PushInterval.Manually <=> Publish
+	PullInterval.Manually <=> Receive
+	!(Syntax & Line)
+	AccessControlGranularity.Fine => "Change Scope".Fine
+	AccessControlGranularity.Granularity <=> Writes.ACL | Writes."Capability-based" | ReadsArtifacts.ACL | ReadsArtifacts."Capability-based" | ReadsHistory.ACL | ReadsHistory."Capability-based"
+	"Offline Read" | "Offline Write" => local
+	"Offline Write" => "Offline Read"
+	"Offline Write" => "Content Addressed" | GUIDs
+	"Offline Write" => Asynchronous
+	"Read meta-info" => "Record Meta-data"
+	"Branching Support" => "Version Data"
+	"History of State" => "Version Data"
+	"History of Operations" => "Change Scope".Fine
+	"History of Operations" => Operations
+	"Query History" => Persistent
+	"Retroactive Modification" => Persistent
+	"Record Meta-data" <=> "Meta Data"
+	"Merge Visualization" => "Diff Visualization"
+	Centralized => "Client-Server"
+	Decentralized => Concurrent
+	"Peer-2-Peer" => Decentralized
+	"Bi-directional Synchronization CS/AS" => Syntax
+	"Artisan Layout" => "Persist Concrete Syntax"
+	"Version Data" => !("State-based CRDT" | "Operation-based CRDT")
+	"Incrementing Integers" => Centralized
+	"State Data" | "Operations Data"
+	"State-based CRDT" => !("Operation-based CRDT" | "Version Data")
+	"Operation-based CRDT" => !("State-based CRDT" | "Version Data")
+	Locking => Centralized
+	"Centralized Access Control" => Centralized
+	"In the Office - Stable Connection" => "Usable With Good Connection"
+	"Fast Restore Latest Version" => "Snapshot Latest Version" | "Snapshots of State"
+	"Fast Restore Any Version" => "Snapshots of State" | "Snapshot Intermediate Versions"
+	"Low Disk Space Usage" => !local | !(Persistent & "History of State")
+	Operations => "Edit Operation Information" | "Diffing Algorithms"

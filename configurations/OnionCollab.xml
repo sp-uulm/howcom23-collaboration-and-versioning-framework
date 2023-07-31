@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="Integrated Model"/>
+	<feature automatic="selected" name="Problem Space"/>
+	<feature automatic="selected" name="Goals"/>
+	<feature automatic="selected" name="Supported Collaborators"/>
+	<feature automatic="unselected" name="Two"/>
+	<feature manual="selected" name="Up to Ten"/>
+	<feature automatic="unselected" name="Hundreds"/>
+	<feature automatic="selected" name="Supported CSs"/>
+	<feature automatic="unselected" name="Single CS"/>
+	<feature manual="selected" name="Multi CS"/>
+	<feature manual="selected" name="Layout manually"/>
+	<feature manual="unselected" name="Publish Work"/>
+	<feature automatic="unselected" name="Restrict"/>
+	<feature automatic="unselected" name="Restrict Read Access"/>
+	<feature automatic="unselected" name="Delete Information"/>
+	<feature automatic="unselected" name="Obfuscate Information"/>
+	<feature automatic="selected" name="Deal with Evolution"/>
+	<feature manual="selected" name="Undo"/>
+	<feature automatic="selected" manual="selected" name="Record Evolution"/>
+	<feature automatic="selected" manual="selected" name="Load Previous Versions"/>
+	<feature manual="unselected" name="Find Bug Cause"/>
+	<feature manual="selected" name="Understand Model Evolution"/>
+	<feature manual="unselected" name="Context of Evolution"/>
+	<feature automatic="unselected" manual="unselected" name="Querying"/>
+	<feature automatic="unselected" name="Get Statistics on Evolution"/>
+	<feature automatic="unselected" manual="unselected" name="Modify"/>
+	<feature automatic="unselected" manual="unselected" name="Restrict Append and Write Access"/>
+	<feature automatic="selected" name="Usage Context"/>
+	<feature automatic="selected" name="Users"/>
+	<feature manual="selected" name="Versioning Expertise"/>
+	<feature automatic="selected" name="Artifacts"/>
+	<feature automatic="unselected" manual="unselected" name="Plain Text"/>
+	<feature automatic="unselected" name="Source Code"/>
+	<feature manual="unselected" name="Table"/>
+	<feature automatic="selected" manual="selected" name="Models"/>
+	<feature automatic="unselected" name="Files"/>
+	<feature manual="unselected" name="Other"/>
+	<feature automatic="selected" name="Platform"/>
+	<feature automatic="unselected" name="Single"/>
+	<feature manual="selected" name="Multi"/>
+	<feature automatic="selected" name="Location"/>
+	<feature manual="selected" name="Off the Map - Offline"/>
+	<feature manual="selected" name="On the Road - Unstable Connection"/>
+	<feature manual="selected" name="In the Office - Stable Connection"/>
+	<feature automatic="selected" name="Tooling"/>
+	<feature automatic="unselected" manual="unselected" name="Command Line Interface"/>
+	<feature automatic="unselected" manual="unselected" name="Graphical User Interface"/>
+	<feature manual="selected" name="Integrated in Artifact Editor"/>
+	<feature automatic="selected" name="Quality Requirements"/>
+	<feature automatic="selected" name="Versioning Quality"/>
+	<feature manual="selected" name="Fast Restore Latest Version"/>
+	<feature manual="unselected" name="Fast Restore Any Version"/>
+	<feature automatic="unselected" manual="unselected" name="Low Disk Space Usage"/>
+	<feature manual="unselected" name="Low Memory Footprint"/>
+	<feature automatic="selected" name="Connection Quality"/>
+	<feature automatic="selected" name="Usable With No Connection"/>
+	<feature manual="selected" name="Usable With Poor Connection"/>
+	<feature automatic="selected" manual="selected" name="Usable With Good Connection"/>
+	<feature automatic="selected" name="Collaboration Quality"/>
+	<feature manual="unselected" name="Awareness of Collaborators"/>
+	<feature automatic="unselected" name="In Real-time"/>
+	<feature manual="unselected" name="Communication with Collaborators"/>
+	<feature manual="selected" name="Disturbance Free"/>
+	<feature manual="selected" name="No Accidental Loss of Information"/>
+	<feature manual="selected" name="Layout Continuity"/>
+	<feature automatic="selected" name="Solution Space"/>
+	<feature automatic="selected" name="Capabilities"/>
+	<feature automatic="selected" name="Collaboration Mode"/>
+	<feature manual="selected" name="Synchronous"/>
+	<feature manual="unselected" name="User Presence"/>
+	<feature automatic="unselected" name="Selected Elements"/>
+	<feature automatic="unselected" name="Ghost Cursor"/>
+	<feature automatic="unselected" name="Movements"/>
+	<feature automatic="selected" name="Seamless Transition"/>
+	<feature automatic="selected" name="Asynchronous"/>
+	<feature automatic="selected" name="Direction"/>
+	<feature manual="selected" name="Publish"/>
+	<feature manual="selected" name="Receive"/>
+	<feature automatic="selected" name="Concurrency"/>
+	<feature automatic="selected" name="Concurrent"/>
+	<feature automatic="selected" name="Merging"/>
+	<feature automatic="unselected" manual="unselected" name="Append-only Merge"/>
+	<feature automatic="unselected" name="2-way Diff"/>
+	<feature automatic="selected" name="Common Ancestor Merge"/>
+	<feature automatic="selected" name="Derive deltas"/>
+	<feature automatic="unselected" manual="unselected" name="3-way Diff"/>
+	<feature manual="selected" name="Operation-based Diff"/>
+	<feature automatic="selected" name="Conflict Resolution"/>
+	<feature manual="unselected" name="Destructive"/>
+	<feature automatic="unselected" name="Random"/>
+	<feature automatic="unselected" name="Size of Model"/>
+	<feature automatic="unselected" name="Time of Change"/>
+	<feature automatic="unselected" name="FWW"/>
+	<feature automatic="unselected" name="LWW"/>
+	<feature automatic="selected" manual="selected" name="Constructive"/>
+	<feature manual="unselected" name="Concatenation"/>
+	<feature manual="unselected" name="Insert in List"/>
+	<feature manual="unselected" name="Calculation"/>
+	<feature manual="selected" name="Integrate Conflicts in Model"/>
+	<feature manual="unselected" name="Complex Strategy"/>
+	<feature automatic="unselected" name="Heuristics"/>
+	<feature automatic="unselected" name="Domain-specific"/>
+	<feature automatic="unselected" name="Avoid Inconsistencies"/>
+	<feature manual="selected" name="Manual"/>
+	<feature automatic="selected" name="Visualization of Conflicts"/>
+	<feature automatic="unselected" manual="unselected" name="Sequential"/>
+	<feature automatic="unselected" name="Pessimistic Locking"/>
+	<feature automatic="unselected" name="Locking Scope.Granularity"/>
+	<feature automatic="unselected" name="Locking Scope.Fine"/>
+	<feature automatic="unselected" name="Locking Scope.Coarse"/>
+	<feature automatic="selected" name="Branching Support"/>
+	<feature manual="selected" name="Explicit"/>
+	<feature automatic="selected" name="Implicit"/>
+	<feature automatic="selected" name="Compare Two Versions"/>
+	<feature automatic="selected" name="Visualization of Differences"/>
+	<feature automatic="selected" name="Operation-based"/>
+	<feature manual="unselected" name="Diff-based"/>
+	<feature automatic="selected" name="Metamodel of Deltas"/>
+	<feature automatic="unselected" name="File System"/>
+	<feature automatic="unselected" name="File"/>
+	<feature automatic="unselected" name="Line"/>
+	<feature automatic="selected" name="Syntax"/>
+	<feature manual="selected" name="Composite / Transactions"/>
+	<feature automatic="selected" name="Granularity of Changes"/>
+	<feature automatic="selected" name="Change Scope.Granularity"/>
+	<feature automatic="selected" manual="selected" name="Change Scope.Fine"/>
+	<feature manual="unselected" name="Change Scope.Coarse"/>
+	<feature automatic="selected" name="VersionInterval.Interval"/>
+	<feature automatic="selected" manual="selected" name="VersionInterval.Immediately"/>
+	<feature manual="unselected" name="VersionInterval.Manually"/>
+	<feature manual="unselected" name="VersionInterval.Time-triggered"/>
+	<feature automatic="selected" name="PushInterval.Interval"/>
+	<feature automatic="selected" name="PushInterval.Immediately"/>
+	<feature automatic="selected" name="PushInterval.Manually"/>
+	<feature manual="unselected" name="PushInterval.Time-triggered"/>
+	<feature automatic="selected" name="PullInterval.Interval"/>
+	<feature automatic="selected" name="PullInterval.Immediately"/>
+	<feature automatic="selected" name="PullInterval.Manually"/>
+	<feature manual="unselected" name="PullInterval.Time-triggered"/>
+	<feature automatic="selected" name="History of State"/>
+	<feature automatic="selected" name="History Persistence"/>
+	<feature automatic="selected" name="Persistent"/>
+	<feature manual="unselected" name="Temporary"/>
+	<feature manual="selected" name="History of Operations"/>
+	<feature manual="unselected" name="Query History"/>
+	<feature automatic="unselected" name="Meta-data"/>
+	<feature automatic="unselected" name="in Artifact Versions"/>
+	<feature manual="unselected" name="Retroactive Modification"/>
+	<feature manual="unselected" name="Record Meta-data"/>
+	<feature automatic="selected" name="ReadsArtifacts.AuthenticationAccessControl"/>
+	<feature automatic="selected" name="ReadsArtifacts.Access Control"/>
+	<feature automatic="selected" manual="selected" name="ReadsArtifacts.None"/>
+	<feature manual="unselected" name="ReadsArtifacts.Capability-based"/>
+	<feature automatic="unselected" name="ReadsArtifacts.ACL"/>
+	<feature automatic="selected" name="ReadsArtifacts.Authentication"/>
+	<feature automatic="selected" name="ReadsArtifacts.Anonymous"/>
+	<feature manual="unselected" name="ReadsArtifacts.Authenticated"/>
+	<feature automatic="selected" name="ReadsHistory.AuthenticationAccessControl"/>
+	<feature automatic="selected" name="ReadsHistory.Access Control"/>
+	<feature automatic="selected" manual="selected" name="ReadsHistory.None"/>
+	<feature manual="unselected" name="ReadsHistory.Capability-based"/>
+	<feature manual="unselected" name="ReadsHistory.ACL"/>
+	<feature automatic="selected" name="ReadsHistory.Authentication"/>
+	<feature automatic="selected" name="ReadsHistory.Anonymous"/>
+	<feature automatic="unselected" name="ReadsHistory.Authenticated"/>
+	<feature automatic="selected" name="Writes.AuthenticationAccessControl"/>
+	<feature automatic="selected" name="Writes.Access Control"/>
+	<feature automatic="selected" manual="selected" name="Writes.None"/>
+	<feature manual="unselected" name="Writes.Capability-based"/>
+	<feature manual="unselected" name="Writes.ACL"/>
+	<feature automatic="selected" name="Writes.Authentication"/>
+	<feature automatic="selected" name="Writes.Anonymous"/>
+	<feature automatic="unselected" name="Writes.Authenticated"/>
+	<feature automatic="unselected" name="AccessControlGranularity.Granularity"/>
+	<feature automatic="unselected" name="AccessControlGranularity.Fine"/>
+	<feature automatic="unselected" name="AccessControlGranularity.Coarse"/>
+	<feature automatic="selected" name="Offline Access"/>
+	<feature automatic="selected" manual="selected" name="Offline Read"/>
+	<feature automatic="unselected" manual="unselected" name="Read meta-info"/>
+	<feature manual="selected" name="Offline Write"/>
+	<feature automatic="selected" name="Bi-directional Synchronization CS/AS"/>
+	<feature automatic="selected" name="Persist Abstract Representation"/>
+	<feature automatic="selected" name="Layout"/>
+	<feature manual="unselected" name="Deterministic Layout"/>
+	<feature automatic="selected" name="Artisan Layout"/>
+	<feature automatic="selected" name="Incremental Synchronization"/>
+	<feature automatic="selected" name="Persist Concrete Syntax"/>
+	<feature automatic="selected" name="Operating Environment"/>
+	<feature automatic="selected" name="Editor Integration"/>
+	<feature manual="unselected" name="Standalone"/>
+	<feature automatic="selected" name="Integrated"/>
+	<feature automatic="selected" name="GUI"/>
+	<feature automatic="selected" name="Diff Visualization"/>
+	<feature manual="selected" name="Level of CS"/>
+	<feature manual="selected" name="Level of AS"/>
+	<feature manual="selected" name="Merge Visualization"/>
+	<feature manual="selected" name="Branching"/>
+	<feature automatic="selected" name="Real-Time Change Propagation"/>
+	<feature manual="selected" name="Edit Operation Information"/>
+	<feature automatic="selected" name="Network"/>
+	<feature automatic="selected" name="Network Topology"/>
+	<feature automatic="selected" manual="selected" name="Centralized"/>
+	<feature manual="unselected" name="Decentralized"/>
+	<feature automatic="selected" name="Communication Protocol"/>
+	<feature automatic="unselected" name="Peer-2-Peer"/>
+	<feature automatic="selected" name="Client-Server"/>
+	<feature automatic="selected" name="Design Decision"/>
+	<feature automatic="selected" name="Data"/>
+	<feature automatic="selected" name="Location of Data"/>
+	<feature manual="selected" name="remote"/>
+	<feature automatic="selected" name="local"/>
+	<feature manual="selected" name="full"/>
+	<feature manual="unselected" name="partial"/>
+	<feature automatic="selected" name="Version Data"/>
+	<feature automatic="selected" name="Primitive History Entries"/>
+	<feature automatic="selected" name="Snapshots of State"/>
+	<feature automatic="selected" name="Diffing Algorithms"/>
+	<feature automatic="selected" name="Operations"/>
+	<feature manual="unselected" name="Snapshots for Performance"/>
+	<feature automatic="unselected" name="Snapshot Latest Version"/>
+	<feature automatic="unselected" name="Snapshot Intermediate Versions"/>
+	<feature automatic="selected" name="History Structure"/>
+	<feature automatic="unselected" name="Linear"/>
+	<feature manual="selected" name="Directed Acyclic Graph"/>
+	<feature automatic="selected" name="Version IDs"/>
+	<feature automatic="unselected" name="Incrementing Integers"/>
+	<feature manual="selected" name="Content Addressed"/>
+	<feature automatic="unselected" name="GUIDs"/>
+	<feature manual="unselected" name="State Data"/>
+	<feature automatic="unselected" name="State-based CRDT"/>
+	<feature automatic="selected" name="Operations Data"/>
+	<feature automatic="unselected" name="Operation-based CRDT"/>
+	<feature automatic="unselected" manual="unselected" name="Meta Data"/>
+	<feature automatic="unselected" name="User"/>
+	<feature automatic="unselected" name="Timestamp"/>
+	<feature automatic="unselected" name="Context Information"/>
+	<feature automatic="unselected" name="Other Information"/>
+	<feature manual="unselected" name="Access Control"/>
+	<feature automatic="unselected" name="Centralized Access Control"/>
+	<feature automatic="unselected" name="Decentralized Access Control"/>
+	<feature automatic="unselected" name="Encryption"/>
+	<feature automatic="unselected" name="Unguessable ID"/>
+	<feature automatic="selected" name="Conflict Detection Algorithm"/>
+	<feature manual="unselected" name="Locking"/>
+	<feature automatic="selected" name="Platform "/>
+	<feature automatic="unselected" name="Specific"/>
+	<feature automatic="selected" name="Independent"/>
+</configuration>

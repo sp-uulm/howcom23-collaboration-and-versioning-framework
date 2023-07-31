@@ -1,0 +1,9 @@
+namespace Interval
+
+features
+	Interval {featureDescription__ "interval describes a point in time when something is triggered.", abstract true}
+		or
+			Immediately {featureDescription__ "means as soon as possible (e.g. after every recognized change)"}
+			Manually {featureDescription__ "means only when the user pushes a button (or something similar)"}
+			"Time-triggered" {featureDescription__ "regularly after a fixed amount of time (very short intervals are covered by 'Immediately')"}
+

@@ -1,0 +1,20 @@
+namespace AuthenticationAccessControl
+
+features
+	AuthenticationAccessControl {extended__ true, featureDescription__ "everything about access control and authentication", abstract true}
+		mandatory
+			"Access Control" {featureDescription__ "How is the access to an artifact restricted?", abstract true}
+				or
+					None {featureDescription__ "no access control means everyone always has access to everything"}
+					"Capability-based" {featureDescription__ "A user has the capability to access a resource (e.g. arbitrary links etc.)"}
+					ACL {featureDescription__ "the access is granted only to authenticated users according to a rights table"}
+			Authentication {featureDescription__ "can the user be identified?", abstract true}
+				or
+					Anonymous {featureDescription__ "no information about the user"}
+					Authenticated {featureDescription__ "user can be identified"}
+
+constraints
+	None => Anonymous
+	ACL => Authenticated
+	Anonymous => "Capability-based" | None
+	Authenticated => "Capability-based" | ACL

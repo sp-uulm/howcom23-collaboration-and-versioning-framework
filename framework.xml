@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="vertical"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="4"/>
+	</properties>
 	<struct>
 		<and abstract="true" mandatory="true" name="Integrated Model">
-			<description>In addition to Super Position, we also should add Einstein's statement of point in time -- there is no thing like a global moment in time</description>
 			<and abstract="true" mandatory="true" name="Problem Space">
+				<graphics key="collapsed" value="false"/>
 				<and abstract="true" mandatory="true" name="Goals">
+					<graphics key="collapsed" value="false"/>
 					<alt abstract="true" mandatory="true" name="Supported Collaborators">
 						<description>The amount of persons the user wants to collaborate with</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Two"/>
 						<feature name="Up to Ten"/>
 						<feature name="Hundreds"/>
 					</alt>
 					<alt abstract="true" mandatory="true" name="Supported CSs">
 						<description>The amount of CSs that should be supported (e.g. textual, visual, tabular)</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Single CS"/>
 						<feature name="Multi CS">
 							<description>Multi means multiple CSs</description>
 						</feature>
 					</alt>
 					<feature name="Layout manually">
-						<description>Capability to adjust the layout of at least one supported CS manually.</description>
+						<description>Capability to adjust the layout of at least one supported CS manually</description>
 					</feature>
 					<and name="Publish Work">
 						<description>Do you want to publish (parts of) your work for external or internal partners (in addition to your collaborators)?</description>
+						<graphics key="collapsed" value="false"/>
 						<or abstract="true" name="Restrict">
-							<description>Really deleting information is important although it is very hard in a cloned world.</description>
+							<description>Really deleting information is important although it is very hard in a cloned world</description>
+							<graphics key="collapsed" value="false"/>
 							<feature name="Restrict Read Access">
-								<description>Read access is just restricted to parts of the model without changing it.</description>
+								<description>Read access is just restricted to parts of the model without changing it</description>
 							</feature>
 							<feature name="Delete Information">
 								<description>really remove information and any connected meta-information as well from any past version</description>
@@ -38,25 +53,30 @@
 					</and>
 					<and name="Deal with Evolution">
 						<description>enables the user to change the state</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Undo">
-							<description>ability to revert locally and globally (and less effort) the most recent changes</description>
+							<description>ability to revert locally and globally (with less effort) the most recent changes</description>
 						</feature>
 						<and name="Record Evolution">
-							<description>persist not only the current state but at least the information to restore previous states (we possibly even allow concurrent states).</description>
+							<description>persist not only the current state but at least the information to restore previous states (possibly even concurrent states)</description>
+							<graphics key="collapsed" value="false"/>
 							<and name="Load Previous Versions">
 								<description>I want to restore previous versions</description>
+								<graphics key="collapsed" value="false"/>
 								<feature name="Find Bug Cause">
 									<description>due to the restore of previous versions, I am able to find the version or change where a bug was introduced</description>
 								</feature>
 								<and name="Understand Model Evolution">
 									<description>I want to understand how the model changed over the time (which change from whom, when, possible impacts of a change, ...)</description>
+									<graphics key="collapsed" value="false"/>
 									<feature name="Context of Evolution">
 										<description>additional information such as documents, issues, change requests and so on who led to a model evolution</description>
 									</feature>
 								</and>
 							</and>
 							<and name="Querying">
-								<description>compared to statistics, I want to query the (accumulated) (meta) data</description>
+								<description>I want to query the (accumulated) (meta) data</description>
+								<graphics key="collapsed" value="false"/>
 								<feature name="Get Statistics on Evolution">
 									<description>I want to have statistics over (meta) data gained during model evolution</description>
 								</feature>
@@ -71,28 +91,31 @@
 					</and>
 				</and>
 				<and abstract="true" mandatory="true" name="Usage Context">
+					<graphics key="collapsed" value="false"/>
 					<and abstract="true" mandatory="true" name="Users">
-						<description>what kind of users do we expect?</description>
+						<description>What kind of users do we expect?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Versioning Expertise">
-							<description>probably not an expert in computers and software, but familiar with versioning</description>
+							<description>probably not an expert in computers and software in general, but familiar with versioning</description>
 						</feature>
 					</and>
 					<or abstract="true" mandatory="true" name="Artifacts">
-						<description>what shall be versioned?</description>
+						<description>What shall be versioned?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Plain Text">
 							<description>Text document that usually will not be further processed by a parser</description>
 						</feature>
 						<feature name="Source Code">
-							<description>text document that typically will be processed by a parser and as such, has a more complex syntax</description>
+							<description>Text document that typically will be processed by a parser and as such, has a more complex syntax</description>
 						</feature>
 						<feature name="Table">
 							<description>The versioned artifact has the of a table</description>
 						</feature>
 						<feature name="Models">
-							<description>here, we refer to models with graphical syntax.</description>
+							<description>Models with graphical (concrete) syntax</description>
 						</feature>
 						<feature name="Files">
-							<description>arbitrary files like pictures, videos. Their content is not considered by versioning.</description>
+							<description>Arbitrary files like pictures, videos. Their content is not considered by versioning.</description>
 						</feature>
 						<feature name="Other">
 							<description>everything else that do not fit into the other categories.</description>
@@ -100,11 +123,13 @@
 					</or>
 					<alt mandatory="true" name="Platform">
 						<description>Should the VCS only be used on a single platform or across multiple platforms?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Single"/>
 						<feature name="Multi"/>
 					</alt>
 					<or abstract="true" mandatory="true" name="Location">
 						<description>where the tool shall be used/usable</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Off the Map - Offline">
 							<description>capability to work with versioned artifacts without any connection. If selected, this is an important feature although we still might have a connection.</description>
 						</feature>
@@ -112,16 +137,17 @@
 							<description>capability to handle with unstable or unreliable connection. Might affect synchronous mode of collaboration.</description>
 						</feature>
 						<feature name="In the Office - Stable Connection">
-							<description>We can expect always a perfect internet connection.</description>
+							<description>always a perfect internet connection</description>
 						</feature>
 					</or>
 					<and abstract="true" mandatory="true" name="Tooling">
 						<description>How can the VCS be used by the users</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Command Line Interface">
 							<description>VCS can be operated from CLI</description>
 						</feature>
 						<feature name="Graphical User Interface">
-							<description>The VCS offers  a stand-alone GUI application</description>
+							<description>The VCS offers a stand-alone GUI application</description>
 						</feature>
 						<feature name="Integrated in Artifact Editor">
 							<description>The VCS is integrated into the editor to create the artifact to be versioned</description>
@@ -129,13 +155,15 @@
 					</and>
 				</and>
 				<and abstract="true" mandatory="true" name="Quality Requirements">
-					<description>Hallo Alex, Hallo Joeri</description>
+					<graphics key="collapsed" value="false"/>
 					<and abstract="true" name="Versioning Quality">
-						<description>requirements on versioning</description>
+						<description>non-functional requirements on versioning</description>
+						<graphics key="collapsed" value="false"/>
 						<and name="Fast Restore Latest Version">
-							<description>The latest version of an artifact shall be restored with low latency.</description>
+							<description>The latest version of an artifact shall be restored with low latency</description>
+							<graphics key="collapsed" value="false"/>
 							<feature name="Fast Restore Any Version">
-								<description>Any version (not only the latest) shall be restored with low latency.</description>
+								<description>Any version (not only the latest) shall be restored with low latency</description>
 							</feature>
 						</and>
 						<feature name="Low Disk Space Usage">
@@ -147,6 +175,7 @@
 					</and>
 					<or abstract="true" mandatory="true" name="Connection Quality">
 						<description>network connection</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Usable With No Connection">
 							<description>the tool shall be usable without any (network) connection</description>
 						</feature>
@@ -158,15 +187,17 @@
 						</feature>
 					</or>
 					<and abstract="true" mandatory="true" name="Collaboration Quality">
+						<graphics key="collapsed" value="false"/>
 						<and name="Awareness of Collaborators">
 							<description>each worker is aware of the activities of collaborators (ghost cursor, cursor position, selected elements, etc.)</description>
+							<graphics key="collapsed" value="false"/>
 							<feature name="In Real-time"/>
 						</and>
 						<feature name="Communication with Collaborators">
 							<description>The collaboration framework offers something like chat, comments, discussions, etc.</description>
 						</feature>
 						<feature name="Disturbance Free">
-							<description>in order to focus on a specific task, it is possible to switch off awareness information and change propagation (possibly delayed).</description>
+							<description>In order to focus on a specific task, it is possible to switch off awareness information and change propagation (possibly delayed)</description>
 						</feature>
 						<feature name="No Accidental Loss of Information">
 							<description>For example, no accidental overwrites (like in zope) (often due to missing awareness)</description>
@@ -178,13 +209,18 @@
 				</and>
 			</and>
 			<and abstract="true" mandatory="true" name="Solution Space">
+				<graphics key="collapsed" value="false"/>
 				<and abstract="true" mandatory="true" name="Capabilities">
+					<graphics key="collapsed" value="false"/>
 					<or abstract="true" mandatory="true" name="Collaboration Mode">
-						<description>It is ok to not choose any collaboration mode, because a tool could offer only versioning capabilities, e.g., Apple Time Machine.</description>
+						<description>It is ok to not choose any collaboration mode, because a tool could offer only versioning capabilities, e.g., Apple Time Machine</description>
+						<graphics key="collapsed" value="false"/>
 						<and name="Synchronous">
 							<description>synchronous (or realtime) exchange of information</description>
+							<graphics key="collapsed" value="false"/>
 							<and abstract="true" name="User Presence">
 								<description>not only artifact related information is exchanged but also user presence related data</description>
+								<graphics key="collapsed" value="false"/>
 								<feature name="Selected Elements">
 									<description>The selected elements of collaborators are shown (elements = parts of versioned artifacts, e.g. model elements)</description>
 								</feature>
@@ -201,8 +237,10 @@
 						</feature>
 						<and name="Asynchronous">
 							<description>asynchronous exchange of information (always includes postponed merges)</description>
+							<graphics key="collapsed" value="false"/>
 							<or abstract="true" mandatory="true" name="Direction">
 								<description>direction of unidirectional asynchronous data exchange (incoming, outgoing)</description>
+								<graphics key="collapsed" value="false"/>
 								<feature name="Publish">
 									<description>local data is published to collaborators asynchronously</description>
 								</feature>
@@ -214,20 +252,26 @@
 					</or>
 					<or abstract="true" mandatory="true" name="Concurrency">
 						<description>Whether versioing allows concurrent changes or not. Orthogonal to sync and async</description>
+						<graphics key="collapsed" value="false"/>
 						<and name="Concurrent">
 							<description>Changes to the same entity can be done concurrently</description>
+							<graphics key="collapsed" value="false"/>
 							<alt mandatory="true" name="Merging">
 								<description>Necessary capability to combine two diverged branches into a single one</description>
+								<graphics key="collapsed" value="false"/>
 								<and name="Append-only Merge">
 									<description>Merging by only adding or removing changes. Does not produce conflicts.</description>
+									<graphics key="collapsed" value="false"/>
 									<feature name="2-way Diff">
 										<description>Comparing of two artifacts without any knownledge about a common anchestor or common base</description>
 									</feature>
 								</and>
 								<and name="Common Ancestor Merge">
 									<description>Requires that two branches have common anchestor or base that is known. Conflicts can occur and need to be handled.</description>
+									<graphics key="collapsed" value="false"/>
 									<and mandatory="true" name="Derive deltas">
 										<description>How to derive deltas and detect conflicts starting from the common base</description>
+										<graphics key="collapsed" value="false"/>
 										<feature name="3-way Diff">
 											<description>state-based, a posteriori</description>
 										</feature>
@@ -237,13 +281,16 @@
 									</and>
 									<and mandatory="true" name="Conflict Resolution">
 										<description>How to resolve existing confilcts</description>
+										<graphics key="collapsed" value="false"/>
 										<and abstract="true" name="Destructive">
-											<description>one alterantive is selected automatically by a metric is not part of the merged result</description>
+											<description>one alternative is selected automatically by a metric is not part of the merged result</description>
+											<graphics key="collapsed" value="false"/>
 											<feature name="Random"/>
 											<feature name="Size of Model">
 												<description>e.g. number of nodes, max depth, maximum nesting</description>
 											</feature>
 											<and name="Time of Change">
+												<graphics key="collapsed" value="false"/>
 												<feature name="FWW">
 													<description>first writer wins</description>
 												</feature>
@@ -254,17 +301,23 @@
 										</and>
 										<and abstract="true" name="Constructive">
 											<description>all alternatives are combined in a costructive way</description>
-											<feature name="Concatenation"/>
-											<feature name="Insert in List"/>
+											<graphics key="collapsed" value="false"/>
+											<feature name="Concatenation">
+												<description>the conflicting parts are just concatenated (e.g., strings)</description>
+											</feature>
+											<feature name="Insert in List">
+												<description>the conflicting parts are kept in a list (e.g., several values/elements)</description>
+											</feature>
 											<feature name="Calculation">
 												<description>resulting values are combined by mathematical operatoins</description>
 											</feature>
 											<feature name="Integrate Conflicts in Model">
-												<description>Explicitly allow conflicts to be part of the merged artifact</description>
+												<description>explicitly allow conflicts to be part of the merged artifact</description>
 											</feature>
 										</and>
 										<and abstract="true" name="Complex Strategy">
 											<description>can either constructive or destructive</description>
+											<graphics key="collapsed" value="false"/>
 											<feature name="Heuristics">
 												<description>e.g. ML</description>
 											</feature>
@@ -285,10 +338,13 @@
 						</and>
 						<and name="Sequential">
 							<description>No concurrent creation of changes, no conflicts by design</description>
+							<graphics key="collapsed" value="false"/>
 							<and name="Pessimistic Locking">
-								<description>The artifact or subparts of the artifact are exlusively locked to a single collaborator. locking scopa can range in their granularity, e.g, entities, submodels, files, repositories</description>
+								<description>The artifact or subparts of the artifact are exlusively locked to a single collaborator. Locking scope can range in their granularity, e.g, entities, submodels, files, repositories</description>
+								<graphics key="collapsed" value="false"/>
 								<or abstract="true" mandatory="true" name="Locking Scope.Granularity">
 									<description>The granularity can be somewhat finer or coarser. E.g., granularity of space/scope can be repository, file, line, character, model element, etc.,</description>
+									<graphics key="collapsed" value="false"/>
 									<feature name="Locking Scope.Fine"/>
 									<feature name="Locking Scope.Coarse"/>
 								</or>
@@ -296,16 +352,18 @@
 						</and>
 					</or>
 					<or abstract="true" name="Branching Support">
-						<description>does the collaboration approach allow branching?</description>
+						<description>Does the collaboration approach allow branching?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Explicit">
-							<description>Possibility to explicitly create branches and give them a name</description>
+							<description>possibility to explicitly create branches and give them a name</description>
 						</feature>
 						<feature name="Implicit">
-							<description>Is the (necessary) consequence of concurrent operations</description>
+							<description>(necessary) consequence of concurrent operations</description>
 						</feature>
 					</or>
 					<and name="Compare Two Versions">
-						<description>Different versions can be compared</description>
+						<description>different versions can be compared</description>
+						<graphics key="collapsed" value="false"/>
 						<feature mandatory="true" name="Visualization of Differences">
 							<description>differences can be visualized</description>
 						</feature>
@@ -318,11 +376,13 @@
 					</and>
 					<and abstract="true" mandatory="true" name="Metamodel of Deltas">
 						<description>describes the scope of a meta-model of a delta. Sometimes, a 'isFinerGrainedThan'-relation exists between two meta-models.</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="File System">
 							<description>only created/updated/deleted files/directories are recognized without considering the content (e.g., Dropbox)</description>
 						</feature>
 						<and name="File">
 							<description>The content of a file is considered to recognize changes</description>
+							<graphics key="collapsed" value="false"/>
 							<feature name="Line">
 								<description>Changes in a file can be more fine-grained on a per line level</description>
 							</feature>
@@ -336,13 +396,16 @@
 				</and>
 				<and abstract="true" mandatory="true" name="Granularity of Changes">
 					<description>Space: File vs. Line vs. Class vs. Attributes; Version: How often a version is created (seldom vs. often vs. after each edit); PushInterval: How often changes are pushed to a server/collaborator; PullInterval: How often changes are pulled from a server/collaborator</description>
+					<graphics key="collapsed" value="false"/>
 					<or abstract="true" mandatory="true" name="Change Scope.Granularity">
 						<description>The granularity can be somewhat finer or coarser. E.g., granularity of space/scope can be repository, file, line, character, model element, etc.,</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Change Scope.Fine"/>
 						<feature name="Change Scope.Coarse"/>
 					</or>
 					<or abstract="true" mandatory="true" name="VersionInterval.Interval">
 						<description>interval describes a point in time when something is triggered.</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="VersionInterval.Immediately">
 							<description>means as soon as possible (e.g. after every recognized change)</description>
 						</feature>
@@ -355,6 +418,7 @@
 					</or>
 					<or abstract="true" mandatory="true" name="PushInterval.Interval">
 						<description>interval describes a point in time when something is triggered.</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="PushInterval.Immediately">
 							<description>means as soon as possible (e.g. after every recognized change)</description>
 						</feature>
@@ -367,6 +431,7 @@
 					</or>
 					<or abstract="true" mandatory="true" name="PullInterval.Interval">
 						<description>interval describes a point in time when something is triggered.</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="PullInterval.Immediately">
 							<description>means as soon as possible (e.g. after every recognized change)</description>
 						</feature>
@@ -380,8 +445,10 @@
 				</and>
 				<and abstract="true" name="History of State">
 					<description>The state's edit or version history is in some way accessible</description>
+					<graphics key="collapsed" value="false"/>
 					<or abstract="true" mandatory="true" name="History Persistence">
 						<description>The history is persisted</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Persistent">
 							<description>not only for a user session, but for a longer period of time (probably forever)</description>
 						</feature>
@@ -394,6 +461,7 @@
 					</feature>
 					<and name="Query History">
 						<description>The recorded data can be queried</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Meta-data">
 							<description>The recorded meta-data can be queried</description>
 						</feature>
@@ -410,8 +478,10 @@
 				</feature>
 				<and abstract="true" mandatory="true" name="ReadsArtifacts.AuthenticationAccessControl">
 					<description>everything about access control and authentication</description>
+					<graphics key="collapsed" value="false"/>
 					<or abstract="true" mandatory="true" name="ReadsArtifacts.Access Control">
 						<description>How is the access to an artifact restricted?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="ReadsArtifacts.None">
 							<description>no access control means everyone always has access to everything</description>
 						</feature>
@@ -424,6 +494,7 @@
 					</or>
 					<or abstract="true" mandatory="true" name="ReadsArtifacts.Authentication">
 						<description>can the user be identified?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="ReadsArtifacts.Anonymous">
 							<description>no information about the user</description>
 						</feature>
@@ -434,8 +505,10 @@
 				</and>
 				<and abstract="true" mandatory="true" name="ReadsHistory.AuthenticationAccessControl">
 					<description>everything about access control and authentication</description>
+					<graphics key="collapsed" value="false"/>
 					<or abstract="true" mandatory="true" name="ReadsHistory.Access Control">
 						<description>How is the access to an artifact restricted?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="ReadsHistory.None">
 							<description>no access control means everyone always has access to everything</description>
 						</feature>
@@ -448,6 +521,7 @@
 					</or>
 					<or abstract="true" mandatory="true" name="ReadsHistory.Authentication">
 						<description>can the user be identified?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="ReadsHistory.Anonymous">
 							<description>no information about the user</description>
 						</feature>
@@ -458,8 +532,10 @@
 				</and>
 				<and abstract="true" mandatory="true" name="Writes.AuthenticationAccessControl">
 					<description>everything about access control and authentication</description>
+					<graphics key="collapsed" value="false"/>
 					<or abstract="true" mandatory="true" name="Writes.Access Control">
 						<description>How is the access to an artifact restricted?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Writes.None">
 							<description>no access control means everyone always has access to everything</description>
 						</feature>
@@ -472,6 +548,7 @@
 					</or>
 					<or abstract="true" mandatory="true" name="Writes.Authentication">
 						<description>can the user be identified?</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Writes.Anonymous">
 							<description>no information about the user</description>
 						</feature>
@@ -482,13 +559,16 @@
 				</and>
 				<or abstract="true" name="AccessControlGranularity.Granularity">
 					<description>The granularity can be somewhat finer or coarser. E.g., granularity of space/scope can be repository, file, line, character, model element, etc.,</description>
+					<graphics key="collapsed" value="false"/>
 					<feature name="AccessControlGranularity.Fine"/>
 					<feature name="AccessControlGranularity.Coarse"/>
 				</or>
 				<and abstract="true" name="Offline Access">
 					<description>what kind of access is available in the offline mode</description>
+					<graphics key="collapsed" value="false"/>
 					<and mandatory="true" name="Offline Read">
 						<description>only reading of artifacts in offline mode</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Read meta-info">
 							<description>also reading meta-info of artifacts</description>
 						</feature>
@@ -499,11 +579,13 @@
 				</and>
 				<and name="Bi-directional Synchronization CS/AS">
 				<description>How are changes propagated between CS and AS?</description>
+				<graphics key="collapsed" value="false"/>
 				<feature mandatory="true" name="Persist Abstract Representation">
 					<description>the abstract representation is persisted (in opposite to 'always derived from concrete model/artifact')</description>
 				</feature>
 				<or abstract="true" mandatory="true" name="Layout">
 					<description>How is an artifact layouted?</description>
+					<graphics key="collapsed" value="false"/>
 					<feature name="Deterministic Layout">
 						<description>layout is deterministic and can therefore generated by a layout algorithm or there exists even a canonical form</description>
 					</feature>
@@ -521,16 +603,21 @@
 		</and>
 		<and abstract="true" mandatory="true" name="Operating Environment">
 			<description>Features and capabilities of the operating environment, e.g., modeling tool or VCS</description>
+			<graphics key="collapsed" value="false"/>
 			<or abstract="true" mandatory="true" name="Editor Integration">
+				<graphics key="collapsed" value="false"/>
 				<feature name="Standalone">
 					<description>The VCS can be used as a stand-alone tool. No tight coupling with an editor is required.</description>
 				</feature>
 				<and name="Integrated">
 					<description>VCS requires at least for some features a tight coupling with a specific editor.</description>
+					<graphics key="collapsed" value="false"/>
 					<and name="GUI">
 						<description>The editor provides a GUI for some features</description>
+						<graphics key="collapsed" value="false"/>
 						<and name="Diff Visualization">
 							<description>Diffs are visualized within the editor</description>
+							<graphics key="collapsed" value="false"/>
 							<feature name="Level of CS"/>
 							<feature name="Level of AS"/>
 						</and>
@@ -551,8 +638,10 @@
 			</or>
 			<and name="Network">
 				<description>Does the collaboration approach rely on networking and - if yes - how?</description>
+				<graphics key="collapsed" value="false"/>
 				<or abstract="true" mandatory="true" name="Network Topology">
 					<description>What kind of network topology is needed?</description>
+					<graphics key="collapsed" value="false"/>
 					<feature name="Centralized">
 						<description>centralized, one specific server node</description>
 					</feature>
@@ -562,6 +651,7 @@
 				</or>
 				<or abstract="true" mandatory="true" name="Communication Protocol">
 					<description>What kind of generic communication approach is used?</description>
+					<graphics key="collapsed" value="false"/>
 					<feature name="Peer-2-Peer">
 						<description>Peer-2-Peer without a dedicated server</description>
 					</feature>
@@ -573,14 +663,18 @@
 		</and>
 		<and abstract="true" mandatory="true" name="Design Decision">
 			<description>Kang: Design features represent design decisions such as domain technologies and implementation techniques</description>
+			<graphics key="collapsed" value="false"/>
 			<and abstract="true" mandatory="true" name="Data">
+				<graphics key="collapsed" value="false"/>
 				<or abstract="true" mandatory="true" name="Location of Data">
 					<description>Where the versioned data and the meta data is stored</description>
+					<graphics key="collapsed" value="false"/>
 					<feature name="remote">
 						<description>The data is not only stored on the local computer</description>
 					</feature>
 					<and name="local">
 						<description>The data is stored on the local computer</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="full">
 							<description>All data (including meta-data) is stored locally</description>
 						</feature>
@@ -591,18 +685,23 @@
 				</or>
 				<and name="Version Data">
 					<description>How/what data is versioned and how the version history is organized</description>
+					<graphics key="collapsed" value="false"/>
 					<or abstract="true" mandatory="true" name="Primitive History Entries">
 						<description>the primitive entries the version history consists of</description>
+						<graphics key="collapsed" value="false"/>
 						<and name="Snapshots of State">
 							<description>A full or partial snapshot of the versioned data</description>
+							<graphics key="collapsed" value="false"/>
 							<feature name="Diffing Algorithms">
 								<description>The VCS provides diffing algorithms to derive differences (deltas or operations) between snapshots</description>
 							</feature>
 						</and>
 						<and name="Operations">
 							<description>the edit operations are persisted, e.g. a user performed edit operation. Does not need an additional diffing alogrithm, because differences are directly recorded</description>
+							<graphics key="collapsed" value="false"/>
 							<or name="Snapshots for Performance">
 								<description>Recording only operations may lead to long restore times of versions. To address this issue, snapshots or caching can be used.</description>
+								<graphics key="collapsed" value="false"/>
 								<feature name="Snapshot Latest Version">
 									<description>The latest version is stored/cached as a full state and does not need to be restored</description>
 								</feature>
@@ -614,6 +713,7 @@
 					</or>
 					<alt abstract="true" mandatory="true" name="History Structure">
 						<description>Structure of recorded history entries</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Linear">
 							<description>History is a linear list</description>
 						</feature>
@@ -623,6 +723,7 @@
 					</alt>
 					<alt abstract="true" mandatory="true" name="Version IDs">
 						<description>each versions needs an ID. The id is generated via...</description>
+						<graphics key="collapsed" value="false"/>
 						<feature name="Incrementing Integers"/>
 						<feature name="Content Addressed">
 							<description>e.g., hashing</description>
@@ -632,18 +733,21 @@
 				</and>
 				<and name="State Data">
 					<description>different (partial) states are collected. no focus on explicit history but a shared state which is eventually consistent.</description>
+					<graphics key="collapsed" value="false"/>
 					<feature name="State-based CRDT">
 						<description>on possible implementation of State Data</description>
 					</feature>
 				</and>
 				<and name="Operations Data">
 					<description>different (partial) sets of operations are collected. no focus on explicit history but a shared set of operations which is eventually consistent.</description>
+					<graphics key="collapsed" value="false"/>
 					<feature name="Operation-based CRDT">
 						<description>on possible implementation of Operations Data</description>
 					</feature>
 				</and>
 				<and name="Meta Data">
 					<description>such as (real) time, user, domain specific data, ...</description>
+					<graphics key="collapsed" value="false"/>
 					<feature name="User">
 						<description>Who did a change?</description>
 					</feature>
@@ -660,10 +764,12 @@
 			</and>
 			<and name="Access Control">
 				<description>How access control is realized</description>
+				<graphics key="collapsed" value="false"/>
 				<feature name="Centralized Access Control">
 					<description>central authority grants access</description>
 				</feature>
 				<and name="Decentralized Access Control">
+					<graphics key="collapsed" value="false"/>
 					<feature name="Encryption">
 						<description>the artifact is protected by a password</description>
 					</feature>
@@ -677,6 +783,7 @@
 				<description>A central authority can grant exclusive write access (a lock) to an artifact or parts of an artifact. This prevents conflicts by design.</description>
 			</feature>
 			<alt mandatory="true" name="Platform ">
+				<graphics key="collapsed" value="false"/>
 				<feature name="Specific"/>
 				<feature name="Independent"/>
 			</alt>
